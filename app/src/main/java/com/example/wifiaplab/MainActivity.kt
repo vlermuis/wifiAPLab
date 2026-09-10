@@ -122,7 +122,9 @@ class MainActivity : Activity() {
 
     private fun registerEvents() {
         val filter = IntentFilter().apply {
-            addAction(WifiManager.WIFI_AP_STATE_CHANGED_ACTION)
+            // WIFI_AP_STATE_CHANGED_ACTION is hidden from the public SDK. Keep
+            // observing the platform broadcast by using its stable action name.
+            addAction("android.net.wifi.WIFI_AP_STATE_CHANGED")
             addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION)
             addAction(WifiManager.WIFI_STATE_CHANGED_ACTION)
         }
